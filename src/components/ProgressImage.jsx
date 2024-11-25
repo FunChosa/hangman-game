@@ -1,4 +1,4 @@
-import { hangmanPartsLong as hangmanParts } from "../../assets/hangmanParts";
+import { hangmanPartsLong as hangmanParts } from "../utils/hangmanParts";
 const ProgressImage = ({ fails }) => {
   return (
     <div className="hangman-container">

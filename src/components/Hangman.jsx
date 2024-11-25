@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import ProgressImage from "../progressImage/progressImage";
-import Popup from "../popup/popup";
-import words from "../../assets/words.json";
-import { hangmanPartsLong as hangmanParts } from "../../assets/hangmanParts";
+import ProgressImage from "./ProgressImage";
+import Popup from "./Popup";
+import words from "../utils/words.json";
+import { hangmanPartsLong as hangmanParts } from "../utils/hangmanParts";
 
 function Hangman() {
   const alfabets = [
@@ -16,20 +16,11 @@ function Hangman() {
   const [wrongLetters, setWrongLetters] = useState([]);
   const [status, setStatus] = useState("");
 
-  const randomizeWord = () =>
-    setWord(words[Math.floor(Math.random() * words.length)].toLowerCase());
-
   const reset = () => {
     randomizeWord();
     setCorrectLetters([]);
     setWrongLetters([]);
     setStatus("");
-  };
-
-  const onGuess = (letter) => {
-    word.includes(letter)
-      ? setCorrectLetters([...correctLetters, letter])
-      : setWrongLetters([...wrongLetters, letter]);
   };
 
   useEffect(reset, []);
@@ -48,6 +39,15 @@ function Hangman() {
       setStatus("lose");
     }
   }, [wrongLetters]);
+
+  const randomizeWord = () =>
+    setWord(words[Math.floor(Math.random() * words.length)].toLowerCase());
+
+  const onGuess = (letter) => {
+    word.includes(letter)
+      ? setCorrectLetters([...correctLetters, letter])
+      : setWrongLetters([...wrongLetters, letter]);
+  };
 
   const maskWord = word
     .split("")

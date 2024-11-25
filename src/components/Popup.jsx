@@ -1,3 +1,4 @@
+import "../index.css";
 const Popup = ({ status, word, reset }) => {
   if (!status) return null;
 
